@@ -23,12 +23,12 @@ function dosNotThrowError(testFunction, description) {
 }
 
 
-function isInRange(recived, expectedLowerBound, expectedUpperBound, description) {
+function isInRange(received, expectedLowerBound, expectedUpperBound, description) {
 
-    if (recived >= expectedLowerBound && recived <= expectedUpperBound) {
+    if (received >= expectedLowerBound && received <= expectedUpperBound) {
         console.log(`🟢 ${description}`);
     } else {
-        console.log(`🔴 ${description}. Expected ${expected}, recived ${recived}`);
+        console.log(`🔴 ${description}. Expected ${expected}, received ${received}`);
     }
 }
 
@@ -36,16 +36,16 @@ function isNotANumber(received, description) {
     if (isNaN(received)) {
         console.log(`🟢 ${description}`);
     } else {
-        console.log(`🔴 ${description}. recived ${received}`);
+        console.log(`🔴 ${description}. received ${received}`);
     }
 }
 
-function isEqual(recived, expected, description) {
+function isEqual(received, expected, description) {
 
-    if (recived === expected) {
+    if (received === expected) {
         console.log(`🟢 ${description}`);
     } else {
-        console.log(`🔴 ${description}. Expected ${expected}, recived ${recived}`);
+        console.log(`🔴 ${description}. Expected ${expected}, received ${received}`);
     }
 
 }
