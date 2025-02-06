@@ -11,11 +11,26 @@ import test from "./test.mjs";
 */
 
 function sequence(n) {
+    if (!Number.isInteger(n) || n < 0) {
+        return null;
+    } else if (n == 0) {
+        return 0;
+    }
 
+    let x = 0;
+    let y = 1;
+
+    for (let i = 2; i <= n; i++) {
+        let z = x + y; // Stores n - 2 before changing x
+        x = y; // n - 1
+        y = z; // n - 2
+    }
+
+    return y;
 }
 
 //#region Tests --------------------------------------------------------------------
-const tests = test("Sum function");
+const tests = test("Sequence function");
 
 // Basic cases
 tests.isEqual(sequence(0), 0, "For n = 0, the function should return 0");
