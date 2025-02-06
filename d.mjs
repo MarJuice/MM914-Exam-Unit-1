@@ -24,7 +24,20 @@ import test from "./test.mjs";
 // Write your function her.
 
 function guessNumber(target, guess) {
-
+    // Check if target or guess is an integer
+    if (!Number.isInteger(target) || !Number.isInteger(guess)) {
+        return null;
+    } 
+    // else if (target < 0 || guess < 0) { // Check if the guess is a negative integer (optional)
+    //     return null;
+    // } 
+    else if (guess < target) { // Check if the guess is lower than the target
+        return "Too low";
+    } else if (guess > target) { // Check if the guess is higher than the target
+        return "Too high";
+    } else if (guess == target) { // Check if the guess is equal to the target
+        return "Correct!";
+    } 
 }
 
 
@@ -33,14 +46,21 @@ function guessNumber(target, guess) {
 //#region Tests --------------------------------------------------------------------
 
 // Basic cases
-test.isEqual(guessNumber(10, 5), "Too low", "If target is 10 and guess is 5, return 'Too low'");
-test.isEqual(guessNumber(10, 15), "Too high", "If target is 10 and guess is 15, return 'Too high'");
-test.isEqual(guessNumber(10, 10), "Correct!", "If target is 10 and guess is 10, return 'Correct!'");
+
+const tests = test("Format name function");
+
+tests.isEqual(guessNumber(10, 5), "Too low", "If target is 10 and guess is 5, return 'Too low'");
+tests.isEqual(guessNumber(10, 15), "Too high", "If target is 10 and guess is 15, return 'Too high'");
+tests.isEqual(guessNumber(10, 10), "Correct!", "If target is 10 and guess is 10, return 'Correct!'");
 
 // Invalid inputs
-
+tests.isEqual(guessNumber("5", 10), null, "If input has a string, return null");
+tests.isEqual(guessNumber(null, 5), null, "If input has null, return null");
+tests.isEqual(guessNumber(1.5, 2), null, "If input has a float, return null");
+tests.isEqual(guessNumber(Infinity, Infinity), null, "If input has infinity, return null")
 
 // Edge cases
-
+tests.isEqual(guessNumber(0, 0), "Correct!", "If target is 0 and guess is 0, return 'Correct!'");
+tests.isEqual(guessNumber(-5, 5), "Too high", "If target is -5 and guess is 5, return 'Too high'");
 
 //#endregion
